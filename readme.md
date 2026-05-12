@@ -26,9 +26,8 @@
 Клонировать репозиторий:
 
 ```
-git clone 
-cd 
-cd 
+git clone https://github.com/charderrrrr/FufloBank
+cd FufloBank/App
 ```
 
 Установить зависимости:
