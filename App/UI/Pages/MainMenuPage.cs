@@ -28,7 +28,7 @@ namespace App.UI.Pages
             while (_sessionManager.IsAuthenticated)
             {
                 AnsiConsole.Clear();
-                AnsiConsole.MarkupLine($"[bold yellow]Welcome, {_sessionManager.CurrentUser.FullName}[/]");
+                AnsiConsole.MarkupLine($"[bold yellow]Добро пожаловать! :)[/]");
 
                 var choice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
