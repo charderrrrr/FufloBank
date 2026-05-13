@@ -1,3 +1,7 @@
+// Сервис расчета и начисления кэшбэка
+// CalculateCashback - вычисляет сумму кэшбэка по проценту категории из таблицы cashback_categories
+// CanAccrueCashback - проверяет, не превышен ли месячный лимит кэшбэка у пользователя
+
 using System;
 using System.Data;
 using System.Linq;
