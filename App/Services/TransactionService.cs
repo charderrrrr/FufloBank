@@ -1,3 +1,11 @@
+// Сервис обработки платежных транзакций
+// _accountRepository - доступ к счетам для списания
+// _transactionRepository - сохранение транзакции в историю
+// _cashbackService - расчет кэшбэка по MCC коду
+// _mccCodeRepository - определение категории по коду мерчанта
+// _connection - подключение к БД для обеспечения атомарности через транзакцию
+// ProcessPayment - списание со счета, определение категории по MCC, начисление кэшбэка, сохранение в историю
+
 using System;
 using System.Data;
 using App.Data.Repositories;
