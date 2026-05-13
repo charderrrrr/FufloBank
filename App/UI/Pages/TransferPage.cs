@@ -17,7 +17,7 @@ namespace App.UI.Pages
         public void Show()
         {
             AnsiConsole.Clear();
-            AnsiConsole.MarkupLine("[bold yellow]P2P Transfer[/]");
+            AnsiConsole.MarkupLine("[bold yellow]P2P перевод[/]");
 
             var phone = AnsiConsole.Ask<string>("Входит телефон получателя (+7XXXXXXXXXX):");
             var currency = AnsiConsole.Prompt(
