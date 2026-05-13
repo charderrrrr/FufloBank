@@ -1,3 +1,8 @@
+// Сервис обновления курсов валют из внешнего источника
+// _rateRepository - сохранение курсов в БД
+// UpdateRates - загрузка курсов из JSON файла с десериализацией, автосоздание файла с дефолтными значениями при отсутствии
+// CreateDefaultRatesFile - генерация файла rates.json с базовыми курсами RUB/USD/CRYPTO при первом запуске
+
 using System;
 using System.Collections.Generic;
 using System.IO;
