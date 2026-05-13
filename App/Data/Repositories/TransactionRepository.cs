@@ -1,3 +1,8 @@
+// Репозиторий для работы с таблицей transactions
+// Create - сохранение новой транзакции в историю
+// UpdateStatus - обновление статуса, времени завершения и суммы кэшбэка
+// GetStatement - формирование выписки с фильтрами по дате, сумме, категории и направлению
+
 using System;
 using System.Collections.Generic;
 using System.Data;
