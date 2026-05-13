@@ -1,3 +1,5 @@
+// Центральный модуль банковской системы, объединяющий все компоненты в единую точку входа
+
 using System;
 using System.Data;
 using App.Data.Repositories;
