@@ -1,3 +1,10 @@
+// Категории для начисления кэшбэка
+// Restaurants - рестораны (5%)
+// Taxi - такси (3%)
+// Other - остальные покупки (1%)
+// Transfer - P2P переводы между пользователями
+// Conversion - конвертация валют
+
 namespace App.Models.Enums
 {
     public enum TransactionCategory
