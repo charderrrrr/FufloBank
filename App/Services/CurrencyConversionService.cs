@@ -24,7 +24,7 @@ namespace App.Services
 
             var rate = _rateRepository.GetRate(from, to);
             if (rate == null)
-                throw new InvalidOperationException($"Exchange rate not found for {from} to {to}");
+                throw new InvalidOperationException($"Курс обмена не найден для {from} к {to}");
 
             return amount * rate.Rate;
         }
