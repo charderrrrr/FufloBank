@@ -20,8 +20,8 @@ namespace App.UI.Pages
             AnsiConsole.MarkupLine("[bold yellow]Баланс аккаунта :0[/]");
 
             var table = new Table();
-            table.AddColumn("Currency");
-            table.AddColumn("Balance");
+            table.AddColumn("Валюта");
+            table.AddColumn("Баланс");
 
             foreach (CurrencyType currency in Enum.GetValues(typeof(CurrencyType)))
             {
