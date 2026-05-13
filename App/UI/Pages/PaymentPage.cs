@@ -33,7 +33,7 @@ namespace App.UI.Pages
                 var transaction = _sessionManager.BankModule.TransactionService.ProcessPayment(
                     _sessionManager.CurrentUser.Id, amount, currency, mccCode, description);
 
-                AnsiConsole.MarkupLine("[green]Payment successful[/]");
+                AnsiConsole.MarkupLine("[green]Оплата успешна![/]");
                 
                 if (transaction.CashbackAmount.HasValue && transaction.CashbackAmount.Value > 0)
                 {
