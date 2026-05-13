@@ -1,3 +1,11 @@
+// Сервис P2P переводов между пользователями
+// _userRepository - поиск отправителя и получателя
+// _accountRepository - доступ к счетам обоих участников
+// _transactionRepository - логирование перевода
+// _securityService - проверка лимитов и кода подтверждения
+// _connection - подключение к БД для атомарного списания и зачисления
+// InitiateTransfer - проверка безопасности, поиск получателя по телефону, атомарный перевод с откатом при ошибке
+
 using System;
 using System.Data;
 using App.Data.Repositories;
