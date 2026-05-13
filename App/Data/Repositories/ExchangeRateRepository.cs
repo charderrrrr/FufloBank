@@ -1,3 +1,7 @@
+// Репозиторий для работы с таблицей exchange_rates
+// GetRate - получение актуального курса для пары валют
+// UpsertRate - вставка или обновление курса при загрузке из внешнего источника
+
 using System.Data;
 using Dapper;
 using App.Models;
