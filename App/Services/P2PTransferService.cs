@@ -44,28 +44,28 @@ namespace App.Services
             string? confirmationCode = null)
         {
             if (_securityService.RequiresConfirmation(amount) && !_securityService.ValidateConfirmationCode(confirmationCode))
-                throw new InvalidOperationException("Invalid confirmation code");
+                throw new InvalidOperationException("Неверный код подтверждения");
 
             var sender = _userRepository.GetById(fromUserId);
             if (sender == null)
-                throw new InvalidOperationException("Sender not found");
+                throw new InvalidOperationException("Отправитель не найден . _.");
 
             var receiver = _userRepository.GetByPhone(toPhone);
             if (receiver == null)
-                throw new InvalidOperationException("Receiver not found");
+                throw new InvalidOperationException("Получатель не найден . _.");
 
             var senderAccount = _accountRepository.GetByUserIdAndCurrency(fromUserId, currency);
             if (senderAccount == null || !senderAccount.CanDebit(amount))
-                throw new InvalidOperationException("Insufficient funds");
+                throw new InvalidOperationException("Казна опустела, милорд...");
 
             var receiverAccount = _accountRepository.GetByUserIdAndCurrency(receiver.Id, currency);
             if (receiverAccount == null)
-                throw new InvalidOperationException("Receiver account not found");
+                throw new InvalidOperationException("Аккаунт получателя не найден");
 
             var transaction = Transaction.Create(
                 senderAccount.Id, receiverAccount.Id, fromUserId, receiver.Id,
                 amount, currency, TransactionCategory.Transfer,
-                $"P2P transfer to {receiver.Phone}");
+                $"P2P перевод {receiver.Phone}");
 
             using var tx = _connection.BeginTransaction();
             try
