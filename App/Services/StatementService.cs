@@ -1,3 +1,7 @@
+// Сервис формирования выписок по счетам
+// _transactionRepository - источник данных о транзакциях
+// GetStatement - получение отфильтрованной выписки за период с опциональной фильтрацией по сумме, категории и направлению
+
 using System;
 using System.Collections.Generic;
 using App.Data.Repositories;
