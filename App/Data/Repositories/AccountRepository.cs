@@ -1,3 +1,10 @@
+// Репозиторий для работы с таблицей accounts
+// GetById - получение счета по идентификатору
+// GetByUserId - получение всех активных счетов пользователя
+// GetByUserIdAndCurrency - получение счета конкретной валюты для операций
+// Create - открытие нового счета при регистрации пользователя
+// UpdateBalance - атомарное обновление баланса после транзакций
+
 using System;
 using System.Collections.Generic;
 using System.Data;
