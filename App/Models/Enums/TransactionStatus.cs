@@ -1,3 +1,10 @@
+// Статусы жизненного цикла транзакции
+// Pending - ожидает обработки
+// Completed - успешно завершена
+// Failed - ошибка выполнения
+// Reversed - откат транзакции
+// PendingConfirmation - ожидает подтверждения по коду безопасности
+
 namespace App.Models.Enums
 {
     public enum TransactionStatus
