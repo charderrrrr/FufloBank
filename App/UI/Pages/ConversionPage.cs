@@ -21,15 +21,15 @@ namespace App.UI.Pages
 
             var fromCurrency = AnsiConsole.Prompt(
                 new SelectionPrompt<CurrencyType>()
-                    .Title("From currency:")
+                    .Title("Из:")
                     .AddChoices(CurrencyType.RUB, CurrencyType.USD, CurrencyType.CRYPTO));
 
             var toCurrency = AnsiConsole.Prompt(
                 new SelectionPrompt<CurrencyType>()
-                    .Title("To currency:")
+                    .Title("В:")
                     .AddChoices(CurrencyType.RUB, CurrencyType.USD, CurrencyType.CRYPTO));
 
-            var amount = AnsiConsole.Ask<decimal>("Enter amount:");
+            var amount = AnsiConsole.Ask<decimal>("Введите сумму:");
 
             try
             {
