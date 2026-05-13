@@ -33,7 +33,7 @@ namespace App.Services
             var ratesData = JsonSerializer.Deserialize<Dictionary<string, decimal>>(jsonContent);
 
             if (ratesData == null)
-                throw new InvalidOperationException("Failed to deserialize rates data");
+                throw new InvalidOperationException("Не удалось прочитать данные о курсах");
 
             foreach (var rateData in ratesData)
             {
