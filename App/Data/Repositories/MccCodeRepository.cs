@@ -1,3 +1,6 @@
+// Репозиторий для работы с таблицей mcc_codes
+// GetByCode - определение категории транзакции по коду мерчанта для автоначисления кэшбэка
+
 using System.Data;
 using Dapper;
 using App.Models;
