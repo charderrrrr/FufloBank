@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FufloBank - Конвертация валюты</title>
+    <link rel="stylesheet" href="/css/style.css"></head>
+<body>
+    <nav>
+        <a href="/index.html">Главная</a>
+        <a href="/payment.html">Оплатить</a>
+        <a href="/transfer.html">P2P перевод</a>
+        <a href="/conversion.html">Валютная конвертация</a>
+        <a href="/history.html">История транзакций</a>
+        <a href="/logout">Выход</a>
+    </nav>
+
+    <h1>Валютная конвертация</h1>
+    <form action="/conversion" method="POST">
+        <select name="fromCurrency" required>
+            <option value="">Из</option>
+            <option value="1">RUB</option>
+            <option value="2">USD</option>
+            <option value="3">CRYPTO</option>
+        </select>
+        <select name="toCurrency" required>
+            <option value="">В</option>
+            <option value="1">RUB</option>
+            <option value="2">USD</option>
+            <option value="3">CRYPTO</option>
+        </select>
+        <input type="number" name="amount" placeholder="Amount" step="0.01" required>
+        <button type="submit">Конвертировать</button>
+    </form>
+    <div id="conversion-result"></div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FufloBank - История транзакций</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/index.html">Главная</a>
+        <a href="/payment.html">Оплатить</a>
+        <a href="/transfer.html">P2P перевод</a>
+        <a href="/conversion.html">Валютная конвертация</a>
+        <a href="/history.html">История транзакций</a>
+        <a href="/logout">Выход</a>
+    </nav>
+    <h1>История транзакций</h1>
+    <form action="/history" method="GET">
+        <input type="date" name="fromDate" required>
+        <input type="date" name="toDate" required>
+        <select name="filter">
+            <option value="all">Все</option>
+            <option value="incoming">Входящие</option>
+            <option value="outgoing">Исходящие</option>
+            <option value="byCategory">По категории</option>
+            <option value="byAmount">По сумме</option>
+        </select>
+        <select name="category" style="display: none;">
+            <option value="1">Рестораны</option>
+            <option value="2">Такси</option>
+            <option value="3">Другие</option>
+            <option value="4">Перевод</option>
+            <option value="5">Конвертация</option>
+        </select>
+        <input type="number" name="minAmount" placeholder="Min amount" step="0.01" style="display: none;">
+        <input type="number" name="maxAmount" placeholder="Max amount" step="0.01" style="display: none;">
+        <button type="submit">Показать</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Тип</th>
+                <th>Сумма</th>
+                <th>Валюта</th>
+                <th>Категория</th>
+                <th>Статус</th>
+                <th>Кэшбек</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</body>
+</html>

@@ -1,14 +1,5 @@
-// Сервис управления сессией пользователя в консольном приложении
-// _initializer - инициализатор БД, создает таблицы при старте
-// _connection - единое подключение к БД на всю сессию
-// BankModule - основной модуль банка со всеми сервисами и репозиториями
-// CurrentUser - текущий авторизованный пользователь
-// IsAuthenticated - флаг наличия активной сессии
-// Login - аутентификация по номеру телефона, устанавливает CurrentUser
-// Register - создание нового пользователя с тремя счетами и автоаутентификацией
-// Logout - сброс текущей сессии, возврат на экран авторизации
-
 using System;
+using System.Data;
 using App.Services;
 using App.Models;
 using App.Data.Repositories;
@@ -20,10 +11,10 @@ namespace App.UI.Services
     public class SessionManager : IDisposable
     {
         private readonly DatabaseInitializer _initializer;
-        private System.Data.IDbConnection _connection;
+        private IDbConnection _connection;
         
         public FufloBankModule BankModule { get; private set; }
-        public UserProfile CurrentUser { get; set; }
+        public UserProfile? CurrentUser { get; set; }
         public bool IsAuthenticated => CurrentUser != null;
 
         public SessionManager(string connectionString)
