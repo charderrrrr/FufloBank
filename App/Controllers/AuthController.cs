@@ -17,7 +17,7 @@ namespace App.Controllers
         {
             _sessionManager = sessionManager;
         }
-a
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {

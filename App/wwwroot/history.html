@@ -54,7 +54,9 @@
 
     <script src="/js/app.js"></script>
     <script>
-        if (!isAuthenticated()) window.location.href = '/login.html';
+        if (!isAuthenticated()) {
+            window.location.href = '/login.html';
+        }
 
         document.getElementById('filter').addEventListener('change', function() {
             const categorySelect = document.getElementById('categorySelect');

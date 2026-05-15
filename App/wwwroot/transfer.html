@@ -116,7 +116,9 @@
 
     <script src="/js/app.js"></script>
     <script>
-        if (!isAuthenticated()) window.location.href = '/login.html';
+        if (!isAuthenticated()) {
+            window.location.href = '/login.html';
+        }
 
         document.getElementById('amount').addEventListener('input', async (e) => {
             const amount = parseFloat(e.target.value);
