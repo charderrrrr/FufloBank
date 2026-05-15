@@ -1,6 +1,3 @@
-// Центральный модуль банковской системы, объединяющий все компоненты в единую точку входа
-
-using System;
 using System.Data;
 using App.Data.Repositories;
 using App.Services;
@@ -13,6 +10,7 @@ namespace App
     public class FufloBankModule : IDisposable
     {
         private readonly IDbConnection _connection;
+        public IDbConnection Connection => _connection;
         public UserRepository UserRepository { get; }
         public AccountRepository AccountRepository { get; }
         public TransactionRepository TransactionRepository { get; }

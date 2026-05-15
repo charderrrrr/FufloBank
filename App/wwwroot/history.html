@@ -13,31 +13,31 @@
         <a href="/transfer.html">P2P перевод</a>
         <a href="/conversion.html">Валютная конвертация</a>
         <a href="/history.html">История транзакций</a>
-        <a href="/logout">Выход</a>
+        <a href="#" onclick="logout()">Выход</a>
     </nav>
     <h1>История транзакций</h1>
-    <form action="/history" method="GET">
-        <input type="date" name="fromDate" required>
-        <input type="date" name="toDate" required>
-        <select name="filter">
+    <form id="history-form">
+        <input type="date" id="fromDate" required>
+        <input type="date" id="toDate" required>
+        <select id="filter">
             <option value="all">Все</option>
             <option value="incoming">Входящие</option>
             <option value="outgoing">Исходящие</option>
             <option value="byCategory">По категории</option>
             <option value="byAmount">По сумме</option>
         </select>
-        <select name="category" style="display: none;">
+        <select id="categorySelect" style="display: none;">
             <option value="1">Рестораны</option>
             <option value="2">Такси</option>
             <option value="3">Другие</option>
             <option value="4">Перевод</option>
             <option value="5">Конвертация</option>
         </select>
-        <input type="number" name="minAmount" placeholder="Min amount" step="0.01" style="display: none;">
-        <input type="number" name="maxAmount" placeholder="Max amount" step="0.01" style="display: none;">
+        <input type="number" id="minAmount" placeholder="Мин сумма" step="0.01" style="display: none;">
+        <input type="number" id="maxAmount" placeholder="Макс сумма" step="0.01" style="display: none;">
         <button type="submit">Показать</button>
     </form>
-    <table>
+    <table id="history-table" >
         <thead>
             <tr>
                 <th>Дата</th>
@@ -52,5 +52,79 @@
         <tbody></tbody>
     </table>
 
+    <script src="/js/app.js"></script>
+    <script>
+        if (!isAuthenticated()) window.location.href = '/login.html';
+
+        document.getElementById('filter').addEventListener('change', function() {
+            const categorySelect = document.getElementById('categorySelect');
+            const minAmount = document.getElementById('minAmount');
+            const maxAmount = document.getElementById('maxAmount');
+
+            categorySelect.style.display = 'none';
+            minAmount.style.display = 'none';
+            maxAmount.style.display = 'none';
+
+            if (this.value === 'byCategory') categorySelect.style.display = 'block';
+            if (this.value === 'byAmount') {
+                minAmount.style.display = 'block';
+                maxAmount.style.display = 'block';
+            }
+        });
+
+        document.getElementById('history-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fromDate = document.getElementById('fromDate').value;
+            const toDate = document.getElementById('toDate').value;
+            const filter = document.getElementById('filter').value;
+            const category = document.getElementById('categorySelect').value;
+            const minAmount = document.getElementById('minAmount').value;
+            const maxAmount = document.getElementById('maxAmount').value;
+
+            const params = new URLSearchParams();
+            params.append('fromDate', fromDate);
+            params.append('toDate', toDate);
+            params.append('filter', filter);
+            if (filter === 'byCategory' && category) params.append('category', category);
+            if (filter === 'byAmount' && minAmount) params.append('minAmount', minAmount);
+            if (filter === 'byAmount' && maxAmount) params.append('maxAmount', maxAmount);
+
+            try {
+                const response = await fetch(`${API_URL}/history?${params.toString()}`, {
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) redirectToLogin();
+                    throw new Error('Failed to fetch history');
+                }
+
+                const transactions = await response.json();
+                const tbody = document.querySelector('#history-table tbody');
+                tbody.innerHTML = '';
+
+                if (transactions.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7">Нет транзакций</td></tr>';
+                    return;
+                }
+
+                transactions.forEach(t => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${new Date(t.date).toLocaleString('ru-RU')}</td>
+                        <td>${t.type}</td>
+                        <td>${t.amount}</td>
+                        <td>${t.currency}</td>
+                        <td>${t.category}</td>
+                        <td>${t.status}</td>
+                        <td>${t.cashback || '-'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                alert(error.message);
+            }
+        });
+    </script>
 </body>
 </html>

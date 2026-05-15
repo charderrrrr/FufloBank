@@ -18,7 +18,7 @@ namespace App.Controllers
         public IActionResult Login([FromBody] LoginRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Phone))
-                return BadRequest(new { error = "Phone is required" });
+                return BadRequest(new { error = "Телефон обязателен" });
 
             if (_sessionManager.Login(request.Phone))
             {
@@ -33,7 +33,7 @@ namespace App.Controllers
         public IActionResult Register([FromBody] RegisterRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.FullName) || string.IsNullOrWhiteSpace(request.Phone))
-                return BadRequest(new { error = "Full name and phone are required" });
+                return BadRequest(new { error = "Полное имя и телефон обязательны" });
 
             if (_sessionManager.Register(request.FullName, request.Phone))
             {
@@ -41,7 +41,7 @@ namespace App.Controllers
                 return Ok(new { userId = user!.Id, fullName = user.FullName });
             }
 
-            return BadRequest(new { error = "Registration failed" });
+            return BadRequest(new { error = "Регистрация не пройдена . _." });
         }
 
         [HttpPost("logout")]
