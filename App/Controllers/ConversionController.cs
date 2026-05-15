@@ -1,3 +1,7 @@
+// ConversionController - API контроллер для конвертации валют. Принимает 
+// запросы на обмен между RUB, USD и CRYPTO. Использует актуальные курсы из ExchangeRateRepository
+// и создает транзакцию конвертации.
+
 using System;
 using System.Data;
 using System.Text.Json.Serialization;

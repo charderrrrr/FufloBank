@@ -25,17 +25,17 @@ function redirectToBalance() {
     window.location.href = '/balance.html';
 }
 
-async function login(phone) {
+async function login(phone, password) {
     try {
         const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: phone })
+            body: JSON.stringify({ phone: phone, password: password })
         });
 
         if (!response.ok) {
             const error = await response.json();
-            throw new Error(error.error || 'Авторизация не пройдена');
+            throw new Error(error.error || 'Упс вы не вошли');
         }
 
         const user = await response.json();
@@ -46,17 +46,17 @@ async function login(phone) {
     }
 }
 
-async function register(fullName, phone) {
+async function register(fullName, phone, password) {
     try {
         const response = await fetch(`${API_URL}/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ fullName: fullName, phone: phone })
+            body: JSON.stringify({ fullName: fullName, phone: phone, password: password })
         });
 
         if (!response.ok) {
             const error = await response.json();
-            throw new Error(error.error || 'Регистрация не пройдена . _.');
+            throw new Error(error.error || 'Регистрация не прошла');
         }
 
         const user = await response.json();

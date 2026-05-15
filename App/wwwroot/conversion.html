@@ -6,9 +6,61 @@
     <title>FufloBank - Конвертация валюты</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+<style>
+    #result {
+        max-width: 1100px;
+        margin: 1.5rem auto 0 auto;
+        background: linear-gradient(135deg, #1a0e0e 0%, #140707 100%);
+        border-radius: 24px;
+        border: 1px solid rgba(173, 83, 83, 0.4);
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(173, 83, 83, 0.15);
+        transition: all 0.3s ease;
+    }
+
+    #result p {
+        margin: 0;
+        padding: 1.5rem 2rem;
+        font-family: 'Regular', system-ui, sans-serif;
+        font-size: 1.1rem;
+        text-align: center;
+        color: #e0d6d6;
+        background: linear-gradient(135deg, #1a0e0e 0%, #140707 100%);
+        letter-spacing: 0.3px;
+    }
+
+    #result p:only-child {
+        border-bottom: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    #result p[style*="color: rgb(189, 9, 9)"] {
+        background: rgba(189, 9, 9, 0.1);
+        border-left: 4px solid rgb(189, 9, 9);
+        color: rgb(189, 9, 9);
+        text-align: left;
+        padding: 1rem 1.5rem;
+    }
+
+    #result p[style*="color: rgb(189, 9, 9)"]::before {
+        content: "⚠️ ";
+        font-size: 1rem;
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    #result p[style*="color: rgb(189, 9, 9)"]::after {
+        display: none;
+    }
+</style>
 <body>
     <nav>
-        <a href="/index.html">Главная</a>
+        <a href="/index.html"><h3>FufloBank</h1></a>
         <a href="/payment.html">Оплатить</a>
         <a href="/transfer.html">P2P перевод</a>
         <a href="/conversion.html">Валютная конвертация</a>
@@ -47,10 +99,10 @@
             try {
                 const result = await convertCurrency(fromCurrency, toCurrency, amount);
                 document.getElementById('result').innerHTML = `
-                    <p>${result.originalAmount} ${result.fromCurrency} = ${result.convertedAmount} ${result.toCurrency}</p>
+                    <p>Успешный перевод! :) Из ${result.originalAmount} ${result.fromCurrency} в ${result.convertedAmount} ${result.toCurrency}</p>
                 `;
             } catch (error) {
-                document.getElementById('result').innerHTML = `<p style="color: rgb(189, 9, 9);">${error.message}</p>`;
+                document.getElementById('result').innerHTML = `<p>${error.message}</p>`;
             }
         });
     </script>

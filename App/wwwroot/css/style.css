@@ -57,6 +57,14 @@ h1 {
     padding-left: 1.2rem;
 }
 
+nav h3 {
+    font-family: 'Bold', system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgb(223, 87, 87);
+}
+
 h2 {
     font-family: 'Medium', system-ui, sans-serif;
     font-size: 1.6rem;
@@ -234,13 +242,6 @@ nav a:last-child:hover {
     font-weight: 500;
     color: #e0d6d6;
     max-width: 1100px;
-}
-
-[style*="display: none"], 
-#confirmation-code-field,
-select[name="category"][style*="display: none"],
-input[name="minAmount"][style*="display: none"],
-input[name="maxAmount"][style*="display: none"] {
 }
 
 p{

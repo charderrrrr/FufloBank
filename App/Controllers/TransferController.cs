@@ -1,3 +1,10 @@
+// TransferController - API контроллер для P2P переводов между пользователями. 
+// Эндпоинт POST api/transfer обрабатывает перевод с проверкой аутентификации, 
+// инициирует P2PTransferService для списания и зачисления средств. 
+// Эндпоинт GET api/transfer/check-limit проверяет, требуется ли 
+// код подтверждения для суммы перевода (используется SecurityService). 
+// Возвращает статус транзакции или ошибку.
+
 using System;
 using Microsoft.AspNetCore.Mvc;
 using App.Models.Enums;

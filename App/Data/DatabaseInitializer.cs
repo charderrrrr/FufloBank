@@ -30,6 +30,7 @@ namespace App.Data
                     id UUID PRIMARY KEY,
                     full_name VARCHAR(200) NOT NULL,
                     phone VARCHAR(12) UNIQUE NOT NULL,
+                    password_hash VARCHAR(200) NOT NULL,
                     status INT NOT NULL DEFAULT 0,
                     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                     monthly_cashback_limit DECIMAL(18,2) NOT NULL DEFAULT 5000.00,

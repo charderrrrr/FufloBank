@@ -1,3 +1,7 @@
+// BalanceController - API контроллер для получения балансов пользователя. 
+// Возвращает текущие остатки по всем счетам пользователя (RUB, USD, CRYPTO). 
+// Требует аутентификации.
+
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;

@@ -32,11 +32,18 @@ namespace App.Data.Repositories
                 "SELECT * FROM users WHERE phone = @Phone", new { Phone = phone });
         }
 
+        public UserProfile? GetByPhoneAndPassword(string phone, string passwordHash)
+        {
+            return _connection.QuerySingleOrDefault<UserProfile>(
+                "SELECT * FROM users WHERE phone = @Phone AND password_hash = @PasswordHash",
+                new { Phone = phone, PasswordHash = passwordHash });
+        }
+
         public void Create(UserProfile user)
         {
             _connection.Execute(@"
-                INSERT INTO users (id, full_name, phone, status, created_at, monthly_cashback_limit, current_monthly_cashback)
-                VALUES (@Id, @FullName, @Phone, @Status, @CreatedAt, @MonthlyCashbackLimit, @CurrentMonthlyCashback)",
+                INSERT INTO users (id, full_name, phone, password_hash, status, created_at, monthly_cashback_limit, current_monthly_cashback)
+                VALUES (@Id, @FullName, @Phone, @PasswordHash, @Status, @CreatedAt, @MonthlyCashbackLimit, @CurrentMonthlyCashback)",
                 user);
         }
 

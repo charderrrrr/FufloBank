@@ -1,3 +1,13 @@
+// FufloBankModule - основной модуль приложения, объединяющий все репозитории и сервисы
+// Отвечает за:
+// - Инициализацию всех зависимостей (репозитории: User, Account, Transaction, ExchangeRate, MccCode)
+// - Настройку бизнес-сервисов (конвертация валют, P2P переводы, кэшбек, безопасность, выписки)
+// - Управление подключением к базе данных (через IDbConnection)
+// - Регистрацию новых пользователей с автоматическим созданием счетов в трех валютах (RUB, USD, CRYPTO)
+// - Пополнение баланса (Deposit)
+// - Реализацию IDisposable для корректного закрытия соединения с БД
+
+using System;
 using System.Data;
 using App.Data.Repositories;
 using App.Services;
@@ -44,7 +54,7 @@ namespace App
             PhoneValidator = new PhoneValidator();
         }
 
-        public UserProfile RegisterUser(string fullName, string phone)
+        public UserProfile RegisterUser(string fullName, string phone, string passwordHash)
         {
             if (!PhoneValidator.Validate(phone))
                 throw new ArgumentException("Invalid phone format");
@@ -53,7 +63,7 @@ namespace App
             if (existingUser != null)
                 throw new InvalidOperationException("User with this phone already exists");
 
-            var user = UserProfile.Create(fullName, phone);
+            var user = UserProfile.Create(fullName, phone, passwordHash);
             UserRepository.Create(user);
 
             var rubAccount = Account.Create(user.Id, CurrencyType.RUB);
