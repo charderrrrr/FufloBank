@@ -68,6 +68,8 @@ dotnet run
 http://localhost:5002
 ```
 
+Структура проекта
+
 ```text
 App/
 ├── Controllers/       # REST API контроллеры
