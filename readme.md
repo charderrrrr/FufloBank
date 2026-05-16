@@ -8,7 +8,7 @@
 - Управление счетами в трех валютах: RUB, USD, CRYPTO
 - P2P переводы между пользователями с проверкой лимитов и подтверждением
 - Оплата товаров/услуг по MCC кодам с начислением кэшбека
-- Конвертация валют по актуальным курсам
+- Конвертация валют по актуальным курсам между своими счетами
 - История транзакций с фильтрацией по дате, типу, категории и сумме
 - Формирование выписок за период
 - Автоматическое обновление курсов валют из внешнего источника
@@ -18,7 +18,6 @@
 
 - C# .NET 10.0
 - ASP.NET Core Web API (REST контроллеры)
-- Spectre.Console для CLI интерфейса
 - Dapper/Npgsql для работы с БД
 - PostgreSQL
 - HTML/CSS/JavaScript для фронтенда (динамические страницы)
@@ -40,7 +39,7 @@
 
 ```bash
 git clone https://github.com/charderrrrr/FufloBank
-cd FufloBank/App
+cd FufloBank/App 
 ```
 
 2. Установить зависимости:
@@ -52,16 +51,57 @@ dotnet add package BCrypt.Net-Next
 dotnet add package Npgsql
 ```
 
-3. Запустить проект
+3. Создать бд в Postgre, настроить подключение в Program.cs
+```sql
+CREATE DATABASE fuflobank;
+```
+
+4. Запустить проект
 
 ```bash
 dotnet run
 ```
 
-4. Вбить этот адрес в браузере
+5. Вбить этот адрес в браузере
 
 ```text
 http://localhost:5002
+```
+
+```text
+App/
+├── Controllers/       # REST API контроллеры
+│   ├── AuthController.cs
+│   ├── BalanceController.cs
+│   ├── ConversionController.cs
+│   ├── HistoryController.cs
+│   ├── PaymentController.cs
+│   └── TransferController.cs
+├── Data/
+│   ├── DatabaseInitializer.cs
+│   └── Repositories/
+├── Models/
+│   └── Enums/
+├── Services/          # Бизнес-логика
+├── UI/
+│   └── Services/
+│       └── SessionManager.cs
+├── Validators/
+├── wwwroot/           # Статические файлы фронтенда
+│   ├── css/
+│   ├── js/
+│   │   └── app.js
+│   ├── index.html
+│   ├── login.html
+│   ├── register.html
+│   ├── balance.html
+│   ├── payment.html
+│   ├── transfer.html
+│   ├── conversion.html
+│   └── history.html
+├── FufloBankModule.cs
+├── Program.cs
+└── App.csproj
 ```
 
 ## API Эндпоинты
